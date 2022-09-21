@@ -11,12 +11,18 @@ const app = express();
 
 app.use(logger);
 
-app.get('/person', (req, res, next) => {
-  let { name } = req.query;
-  res.status(200).send({ name });
+app.get('/person', validator, (req, res, next) => {
+  try {
+    let { name } = req.query;
+    res.status(200).send({ name });
+  } catch (error) {
+    next(error);
+  }
 });
 
 app.use('*', notFound);
+
+app.use(errorHandler);
 
 function start(PORT) {
   app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
