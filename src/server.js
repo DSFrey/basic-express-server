@@ -12,12 +12,8 @@ const app = express();
 app.use(logger);
 
 app.get('/person', validator, (req, res, next) => {
-  try {
-    let { name } = req.query;
-    res.status(200).send({ name });
-  } catch (error) {
-    next(error);
-  }
+  let { name } = req.query;
+  res.status(200).send({ name });
 });
 
 app.use('*', notFound);

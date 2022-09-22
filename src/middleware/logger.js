@@ -1,8 +1,7 @@
 'use strict';
 
 const logger = (req, res, next) => {
-  console.log('Request method: ', req.method);
-  console.log('Path', req.url);
+  console.log(req.method, req.url);
   next();
 };
 
